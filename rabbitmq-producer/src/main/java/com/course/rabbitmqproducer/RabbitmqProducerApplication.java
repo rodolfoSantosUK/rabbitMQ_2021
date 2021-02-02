@@ -3,6 +3,7 @@ package com.course.rabbitmqproducer;
 import com.course.rabbitmqproducer.entity.Employee;
 import com.course.rabbitmqproducer.producer.EmployeeJsonProducer;
 import com.course.rabbitmqproducer.producer.HelloRabbitProducer;
+import com.course.rabbitmqproducer.producer.HumanResourceProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,7 +20,7 @@ public class RabbitmqProducerApplication implements CommandLineRunner {
 //	private HelloRabbitProducer helloRabbitProducer;
 
     @Autowired
-    private EmployeeJsonProducer employeeJsonProducer;
+    private HumanResourceProducer humanResourceProducer ;
 
     public static void main(String[] args) {
         SpringApplication.run(RabbitmqProducerApplication.class, args);
@@ -29,7 +30,7 @@ public class RabbitmqProducerApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         for (int i = 0; i < 5; i++) {
             var e = new Employee("emp " + i, "Employee " + i  );
-            employeeJsonProducer.sendMessage(e);
+            humanResourceProducer.sendMessage(e);
         }
     }
 }
