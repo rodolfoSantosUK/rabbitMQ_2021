@@ -28,7 +28,7 @@ public class RabbitmqProducerApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         for (int i = 0; i < 5; i++) {
-            var e = new Employee("emp " + i, "Employee " + i, LocalDate.now());
+            var e = new Employee("emp " + i, "Employee " + i  );
             employeeJsonProducer.sendMessage(e);
         }
     }
