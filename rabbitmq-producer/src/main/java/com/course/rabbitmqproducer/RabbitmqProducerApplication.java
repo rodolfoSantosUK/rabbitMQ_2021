@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -21,7 +19,7 @@ public class RabbitmqProducerApplication implements CommandLineRunner {
 //	private HelloRabbitProducer helloRabbitProducer;
 
     @Autowired
-    private SpringPictureProducer pictureProducer ;
+    private SpringEmployeeProducer springEmployeeProducer;
 
     private List<String> SOURCES  = List.of("mobile", "web");
     private List<String> TYPES  = List.of("jpg", "png", "svg");
@@ -30,16 +28,25 @@ public class RabbitmqProducerApplication implements CommandLineRunner {
         SpringApplication.run(RabbitmqProducerApplication.class, args);
     }
 
+//    @Override
+//    public void run(String... args) throws Exception {
+//        for (int i = 0; i < 1; i++) {
+//            var p = new Picture( );
+//            p.setName("Picture " + i);
+//            p.setSize(ThreadLocalRandom.current().nextLong(9001, 10001));
+//            p.setSource(SOURCES.get(i % SOURCES.size()));
+//            p.setType(TYPES.get(i % TYPES.size()));
+//
+//            springEmployeeProducer.sendMessage(p);
+//        }
+//    }
+
     @Override
     public void run(String... args) throws Exception {
-        for (int i = 0; i < 1; i++) {
-            var p = new Picture( );
-            p.setName("Picture " + i);
-            p.setSize(ThreadLocalRandom.current().nextLong(9001, 10001));
-            p.setSource(SOURCES.get(i % SOURCES.size()));
-            p.setType(TYPES.get(i % TYPES.size()));
-
-            pictureProducer.sendMessage(p);
+        for (int i = 0; i < 10; i++) {
+            Employee emp = new Employee("Employee " + i, null );
+            springEmployeeProducer.sendMessage(emp);
         }
     }
+
 }
