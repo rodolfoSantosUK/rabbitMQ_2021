@@ -11,6 +11,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 @SpringBootApplication
 //@EnableScheduling
@@ -20,7 +21,7 @@ public class RabbitmqProducerApplication implements CommandLineRunner {
 //	private HelloRabbitProducer helloRabbitProducer;
 
     @Autowired
-    private PictureProducerTwo pictureProducer ;
+    private MyPictureProducer pictureProducer ;
 
     private List<String> SOURCES  = List.of("mobile", "web");
     private List<String> TYPES  = List.of("jpg", "png", "svg");
@@ -34,7 +35,7 @@ public class RabbitmqProducerApplication implements CommandLineRunner {
         for (int i = 0; i < 5; i++) {
             var p = new Picture( );
             p.setName("Picture " + i);
-            p.setSize(5);
+            p.setSize(ThreadLocalRandom.current().nextLong(9001, 10001));
             p.setSource(SOURCES.get(i % SOURCES.size()));
             p.setType(TYPES.get(i % TYPES.size()));
 
