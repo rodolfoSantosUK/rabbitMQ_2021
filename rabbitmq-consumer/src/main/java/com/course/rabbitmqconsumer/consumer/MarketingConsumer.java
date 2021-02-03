@@ -1,31 +1,31 @@
 package com.course.rabbitmqconsumer.consumer;
 
-import com.course.rabbitmqconsumer.entity.Employee;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.stereotype.Service;
 
-import java.io.IOException;
+import com.course.rabbitmqconsumer.entity.Employee;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 //@Service
 public class MarketingConsumer {
 
-    private ObjectMapper objectMapper = new ObjectMapper();
-    private static final Logger log = LoggerFactory.getLogger(MarketingConsumer.class);
+	private ObjectMapper objectMapper = new ObjectMapper();
+	private static final Logger log = LoggerFactory.getLogger(MarketingConsumer.class);
+	
+	@RabbitListener(queues = "q.hr.marketing")
+	public void listen(String message) {
+		Employee emp = null;
+		
+		try {
+			emp = objectMapper.readValue(message, Employee.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-    @RabbitListener(queues = "q.hr.marketing")
-    public void listen(String message) {
-        Employee emp = null;
-
-        try {
-            emp = objectMapper.readValue(message, Employee.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        log.info("Employee is {}", emp);
-    }
-
+		log.info("On marketing, employee is {}", emp);
+	}
+	
 }

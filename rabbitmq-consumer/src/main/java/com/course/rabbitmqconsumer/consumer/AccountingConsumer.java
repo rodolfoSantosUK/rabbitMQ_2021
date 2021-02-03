@@ -10,12 +10,12 @@ import com.course.rabbitmqconsumer.entity.Employee;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 //@Service
-public class EmployeeJsonConsumer {
+public class AccountingConsumer {
 
 	private ObjectMapper objectMapper = new ObjectMapper();
-	private static final Logger log = LoggerFactory.getLogger(EmployeeJsonConsumer.class);
+	private static final Logger log = LoggerFactory.getLogger(AccountingConsumer.class);
 	
-	@RabbitListener(queues = "course.employee")
+	@RabbitListener(queues = "q.hr.accounting")
 	public void listen(String message) {
 		Employee emp = null;
 		
@@ -25,7 +25,7 @@ public class EmployeeJsonConsumer {
 			e.printStackTrace();
 		}
 
-		log.info("Employee is {}", emp);
+		log.info("On accounting, employee is {}", emp);
 	}
 	
 }

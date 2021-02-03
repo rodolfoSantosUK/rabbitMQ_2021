@@ -21,7 +21,7 @@ public class RabbitmqProducerApplication implements CommandLineRunner {
 //	private HelloRabbitProducer helloRabbitProducer;
 
     @Autowired
-    private MyPictureProducer pictureProducer ;
+    private SpringPictureProducer pictureProducer ;
 
     private List<String> SOURCES  = List.of("mobile", "web");
     private List<String> TYPES  = List.of("jpg", "png", "svg");
@@ -32,7 +32,7 @@ public class RabbitmqProducerApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 1; i++) {
             var p = new Picture( );
             p.setName("Picture " + i);
             p.setSize(ThreadLocalRandom.current().nextLong(9001, 10001));

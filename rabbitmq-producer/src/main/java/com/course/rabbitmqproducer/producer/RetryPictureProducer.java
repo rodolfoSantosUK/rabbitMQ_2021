@@ -8,8 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 //@Service
-public class MyPictureProducer {
-
+public class RetryPictureProducer {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
@@ -18,7 +17,7 @@ public class MyPictureProducer {
     public void sendMessage(Picture p) {
         try {
             var json = objectMapper.writeValueAsString(p);
-            rabbitTemplate.convertAndSend( "x.mypicture", p.getType() ,json);
+            rabbitTemplate.convertAndSend( "x.guideline.work", p.getType() ,json);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
