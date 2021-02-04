@@ -20,7 +20,12 @@ public class RabbitmqProducerTwoApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        var dummyMessage = new DummyMessages("Isto é um teste", 1);
-        dummyProducer.sendDummy( dummyMessage);
+
+        for (int i =0; i < 1000; i++ ) {
+            var dummyMessage = new DummyMessages("Isto é um teste", i);
+            dummyProducer.sendDummy( dummyMessage);
+            Thread.sleep(1000);
+        }
+
     }
 }
