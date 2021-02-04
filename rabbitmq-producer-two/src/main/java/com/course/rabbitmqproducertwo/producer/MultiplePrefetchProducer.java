@@ -1,6 +1,6 @@
 package com.course.rabbitmqproducertwo.producer;
 
-import com.course.rabbitmqproducertwo.entity.DummyMessages;
+import com.course.rabbitmq.entity.DummyMessages;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

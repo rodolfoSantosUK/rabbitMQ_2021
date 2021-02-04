@@ -1,4 +1,4 @@
-package com.course.rabbitmqproducertwo.entity;
+package com.course.rabbitmq.entity;
 
 import com.course.rabbitmqproducertwo.json.CustomLocalDateSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

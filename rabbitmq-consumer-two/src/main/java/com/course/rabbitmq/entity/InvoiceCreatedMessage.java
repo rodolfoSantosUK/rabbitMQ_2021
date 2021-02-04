@@ -1,6 +1,8 @@
-package com.course.rabbitmqconsumertwo.entity;
+package com.course.rabbitmq.entity;
 
+import com.course.rabbitmqconsumertwo.json.CustomLocalDateDeserializer;
 import com.course.rabbitmqconsumertwo.json.CustomLocalDateSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.time.LocalDate;
@@ -9,7 +11,7 @@ public class InvoiceCreatedMessage {
 
     private double amount;
 
-    @JsonSerialize(using = CustomLocalDateSerializer.class)
+    @JsonDeserialize(using = CustomLocalDateDeserializer.class)
     private LocalDate createdDate;
 
     private String currency;

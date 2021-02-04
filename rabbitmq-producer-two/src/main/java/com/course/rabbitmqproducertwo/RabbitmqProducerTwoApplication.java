@@ -1,11 +1,10 @@
 package com.course.rabbitmqproducertwo;
 
-import com.course.rabbitmqproducertwo.entity.DummyMessages;
-import com.course.rabbitmqproducertwo.entity.InvoiceCreatedMessage;
-import com.course.rabbitmqproducertwo.entity.InvoicePaidMessage;
-import com.course.rabbitmqproducertwo.producer.DummyProducer;
+import com.course.rabbitmq.entity.InvoiceCanceledMessage;
+import com.course.rabbitmq.entity.InvoiceCreatedMessage;
+import com.course.rabbitmq.entity.InvoicePaidMessage;
+import com.course.rabbitmq.entity.InvoiceRejectedMessage;
 import com.course.rabbitmqproducertwo.producer.InvoiceProducer;
-import com.course.rabbitmqproducertwo.producer.MultiplePrefetchProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -35,5 +34,14 @@ public class RabbitmqProducerTwoApplication implements CommandLineRunner {
         var randomPaymentNumber = "PAY-" + ThreadLocalRandom.current().nextInt(2000, 3000);
         var invoicePaidMessage = new InvoicePaidMessage(randomInvoiceNumber, LocalDate.now(), randomPaymentNumber);
         producer.sendInvoicePaid(invoicePaidMessage);
+
+
+        randomInvoiceNumber = "INV-" + ThreadLocalRandom.current().nextInt(300, 400);
+        var invoiceCanceledMessage = new InvoiceCanceledMessage( randomInvoiceNumber, LocalDate.now(), "Just cancel it");
+        producer.sendInvoiceCanceled(invoiceCanceledMessage);
+
+        randomInvoiceNumber = "INV-" + ThreadLocalRandom.current().nextInt(300, 400);
+        var invoiceRejectedMessage = new InvoiceRejectedMessage( randomInvoiceNumber, LocalDate.now(), "Jusr reject it");
+        producer.sendInvoiceRejected(invoiceRejectedMessage);
     }
 }

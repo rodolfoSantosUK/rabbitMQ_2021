@@ -1,4 +1,4 @@
-package com.course.rabbitmqconsumertwo.entity;
+package com.course.rabbitmq.entity;
 
 public class DummyMessages {
 

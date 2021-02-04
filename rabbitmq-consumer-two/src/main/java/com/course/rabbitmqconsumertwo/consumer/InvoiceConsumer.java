@@ -1,8 +1,6 @@
 package com.course.rabbitmqconsumertwo.consumer;
 
-import com.course.rabbitmqconsumertwo.entity.DummyMessages;
-import com.course.rabbitmqconsumertwo.entity.InvoiceCreatedMessage;
-import com.course.rabbitmqconsumertwo.entity.InvoicePaidMessage;
+import com.course.rabbitmq.entity.InvoicePaidMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
@@ -20,9 +18,14 @@ public class InvoiceConsumer {
         log.info("handleInvoicePaid: {}", invoicePaidMessage);
     }
 
-    @RabbitHandler
-    public void handleInvoiceCreated(InvoiceCreatedMessage invoiceCreatedMessage) throws InterruptedException {
-        log.info("handleInvoiceCreated: {}", invoiceCreatedMessage);
+//    @RabbitHandler
+//    public void handleInvoiceCreated(InvoiceCreatedMessage invoiceCreatedMessage) throws InterruptedException {
+//        log.info("handleInvoiceCreated: {}", invoiceCreatedMessage);
+//    }
+
+    @RabbitHandler(isDefault = true)
+    public void handleDefault(Object message) throws InterruptedException {
+        log.info("handleDefault: {}", message);
     }
 
 }
